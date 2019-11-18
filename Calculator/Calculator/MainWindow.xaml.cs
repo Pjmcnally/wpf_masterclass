@@ -27,11 +27,6 @@ namespace Calculator
         public MainWindow()
         {
             InitializeComponent();
-
-            buttonAC.Click += ButtonAC_Click;
-            buttonNegative.Click += ButtonNegative_Click;
-            buttonPercent.Click += ButtonPercent_Click;
-            buttonEqual.Click += ButtonEqual_Click;
         }
 
         private void ButtonEqual_Click(object sender, RoutedEventArgs e)
@@ -61,9 +56,15 @@ namespace Calculator
 
         private void ButtonPercent_Click(object sender, RoutedEventArgs e)
         {
-            if (double.TryParse(resultLabel.Content.ToString(), out lastNumber))
+            double tempNumber;
+            if (double.TryParse(resultLabel.Content.ToString(), out tempNumber))
             {
-                resultLabel.Content = (lastNumber / 100).ToString();
+                tempNumber = tempNumber / 100;
+                if (lastNumber != 0)
+                {
+                    tempNumber *= lastNumber;
+                }
+                resultLabel.Content = tempNumber.ToString();
             }
         }
 
@@ -78,6 +79,8 @@ namespace Calculator
         private void ButtonAC_Click(object sender, RoutedEventArgs e)
         {
             resultLabel.Content = "0";
+            result = 0;
+            lastNumber = 0;
         }
 
         private void ButtonOperation_Click(object sender, RoutedEventArgs e)
