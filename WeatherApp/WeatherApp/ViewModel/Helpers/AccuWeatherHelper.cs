@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using WeatherApp.Model;
 
@@ -19,7 +18,7 @@ namespace WeatherApp.ViewModel.Helpers
             var response = await App.client.GetAsync(url);
             string json = await response.Content.ReadAsStringAsync();
 
-            return JsonConvert.DeserializeObject<List<City>>(json); ;
+            return JsonConvert.DeserializeObject<List<City>>(json);
         }
 
         public static async Task<CurrentConditions> GetCurrentConditions(string cityKey)
