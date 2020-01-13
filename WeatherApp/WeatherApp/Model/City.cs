@@ -11,7 +11,6 @@
         public Region AdministrativeArea { get; set; }
     }
 
-
     public class Region
     {
         public string ID { get; set; }
