@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WeatherApp.Model
+﻿namespace WeatherApp.Model
 {
-    class City
+    public class City
     {
         public int Version { get; set; }
         public string Key { get; set; }

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WeatherApp.Model
 {
-    class CurrentConditions
+    public class CurrentConditions
     {
         public DateTime LocalObservationDateTime { get; set; }
         public int EpochTime { get; set; }
