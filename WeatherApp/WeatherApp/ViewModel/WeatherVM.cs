@@ -53,9 +53,11 @@ namespace WeatherApp.ViewModel
         {
             if (DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
             {
-                SelectedCity = new City
+                // Setting private variable directly to avoid triggering OnPropertyChanged event (and associated API
+                // call). Otherwise this will exhaust API limit by making a call each time the designer is reloaded
+                selectedCity = new City
                 {
-                    LocalizedName = "Test City Name"
+                    LocalizedName = "Test City"
                 };
 
                 CurrentConditions = new CurrentConditions
