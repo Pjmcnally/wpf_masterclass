@@ -51,30 +51,52 @@ namespace WeatherApp.ViewModel
 
         public WeatherVM()
         {
-            if (DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
-            {
-                // Setting private variable directly to avoid triggering OnPropertyChanged event (and associated API
-                // call). Otherwise this will exhaust API limit by making a call each time the designer is reloaded
-                selectedCity = new City
-                {
-                    LocalizedName = "Test City"
-                };
-
-                CurrentConditions = new CurrentConditions
-                {
-                    WeatherText = "Test Weather Text",
-                    Temperature = new Temperature
-                    {
-                        Imperial = new UnitValue
-                        {
-                            Value = 32
-                        }
-                    }
-                };
-            };
-
             SearchCommand = new SearchCommand(this);
             Cities = new ObservableCollection<City>();
+
+            if (DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
+            {
+                SetupDesignerDisplay();
+            };
+        }
+
+        private void SetupDesignerDisplay()
+        {
+            Query = "Test City";
+
+            // Setting private variable directly to avoid triggering OnPropertyChanged event (and associated API
+            // call). Otherwise this will exhaust API limit by making a call each time the designer is reloaded
+            selectedCity = new City
+            {
+                LocalizedName = "Test City",
+                Country = new Region
+                {
+                    LocalizedName = "United States",
+                    ID = "US"
+                },
+                AdministrativeArea = new Region
+                {
+                    LocalizedName = "Minnesota",
+                    ID = "MN"
+                }
+            };
+
+            CurrentConditions = new CurrentConditions
+            {
+                WeatherText = "Test Weather Text",
+                Temperature = new Temperature
+                {
+                    Imperial = new UnitValue
+                    {
+                        Value = 32
+                    }
+                }
+            };
+
+            for (int i = 1; i <= 5; i++)
+            {
+                Cities.Add(SelectedCity);
+            }
         }
 
         private async void GetCurrentConditions()
