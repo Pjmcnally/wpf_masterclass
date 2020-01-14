@@ -23,7 +23,7 @@ namespace WeatherApp.ViewModel.Helpers
 
         public static async Task<CurrentConditions> GetCurrentConditions(string cityKey)
         {
-            string url = BaseUrl + string.Format(CurrentConditionsEndpoint, ApiKey, cityKey);
+            string url = BaseUrl + string.Format(CurrentConditionsEndpoint, cityKey, ApiKey);
             var response = await App.client.GetAsync(url);
             string json = await response.Content.ReadAsStringAsync();
 
